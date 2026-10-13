@@ -1,0 +1,28 @@
+{
+  "name": "blockcert-local-demo",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A local blockchain-based academic certificate issuance and verification demo.",
+  "scripts": {
+    "dev": "node src/server.js",
+    "build": "vite build",
+    "start": "node src/server.js --production",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "ethers": "^6.15.0",
+    "express": "^5.1.0",
+    "ganache": "^7.9.2",
+    "html5-qrcode": "^2.3.8",
+    "qrcode": "^1.5.4",
+    "dotenv": "^16.6.1",
+    "solc": "^0.8.30"
+  },
+  "devDependencies": {
+    "vite": "^7.1.0"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  }
+}

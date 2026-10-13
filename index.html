@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <meta name="theme-color" content="#fbfaf7">
+    <meta name="description" content="BlockCert checks academic certificate records against a real, local Ethereum-compatible blockchain. Issue, share, and verify tamper-evident certificate fingerprints.">
+    <meta name="robots" content="noindex, nofollow">
+    <title>BlockCert — Certificate Verification</title>
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="topbar">
+        <a class="brand" href="#top" aria-label="BlockCert home">
+            <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+            <span>Block<span class="brand-highlight">Cert</span></span>
+        </a>
+        <nav class="top-nav" aria-label="Main navigation">
+            <a href="#verify">Verify</a>
+            <a href="#issue">College portal</a>
+            <a href="#how-it-works">How it works</a>
+        </nav>
+        <span class="network-pill"><span class="live-dot"></span><span>Local blockchain demo</span></span>
+    </header>
+
+    <main id="main">
+        <section id="top" class="hero">
+            <div class="hero-content">
+                <p class="eyebrow"><span class="eyebrow-line"></span> A new standard for trust in education</p>
+                <h1>A credential should speak <span>for itself.</span></h1>
+                <p class="hero-description">Verify an academic certificate against an authorized institution’s tamper-evident blockchain record. Simple for graduates. Reliable for the people who need to check.</p>
+                <div class="hero-actions">
+                    <a class="button button-primary" href="#verify">Verify a certificate <span aria-hidden="true">↗</span></a>
+                    <a class="button button-text" href="#issue">For college administrators <span aria-hidden="true">→</span></a>
+                </div>
+                <div class="hero-footnote"><span class="shield-icon" aria-hidden="true">✓</span>Certificate originals stay on your device. Only a document fingerprint is written to the local blockchain.</div>
+            </div>
+            <div class="hero-art" role="img" aria-label="An academic certificate is securely verified and recorded on the blockchain">
+                <div class="orbit orbit-outer"></div><div class="orbit orbit-inner"></div>
+                <span class="orbit-node orbit-node-one"></span><span class="orbit-node orbit-node-two"></span><span class="orbit-node orbit-node-three"></span>
+                <div class="certificate-art">
+                    <div class="certificate-top"><span class="seal">B</span><span class="cert-status"><span></span> AUTHENTIC</span></div>
+                    <p class="art-overline">CERTIFICATE OF ACHIEVEMENT</p>
+                    <div class="certificate-rule"></div>
+                    <p class="art-recipient">Academic achievement</p>
+                    <div class="art-lines"><span></span><span></span><span></span></div>
+                    <div class="certificate-sign"><span class="sign-mark">B C</span><span class="sign-label">RECORDED ON BLOCKCHAIN</span></div>
+                </div>
+                <div class="chain-chip chain-chip-top"><span class="mini-chain">⛓</span> Tamper-evident record</div>
+                <div class="chain-chip chain-chip-bottom"><span class="verified-check">✓</span> Verified in seconds</div>
+            </div>
+        </section>
+
+        <section class="value-strip" aria-label="BlockCert safeguards">
+            <div class="value"><span class="value-number">01</span><span><strong>Authorized issuance</strong><small>Approved college issuers</small></span></div>
+            <div class="value"><span class="value-number">02</span><span><strong>Fingerprint matching</strong><small>SHA-256 document checks</small></span></div>
+            <div class="value"><span class="value-number">03</span><span><strong>Portable verification</strong><small>Scan, upload, and verify</small></span></div>
+            <div class="value"><span class="value-number">04</span><span><strong>Blockchain records</strong><small>Transparent issuance history</small></span></div>
+        </section>
+
+        <section id="verify" class="workspace-section">
+            <div class="section-heading">
+                <div><p class="eyebrow">Open to everyone</p><h2>Check a certificate.</h2></div>
+                <p>Scan a QR code or enter the certificate ID. For a document-level check, upload the certificate file to compare its fingerprint.</p>
+            </div>
+            <div class="workspace-grid">
+                <article class="workspace-card verify-card">
+                    <div class="card-heading"><span class="card-icon verify-icon" aria-hidden="true">✓</span><div><h3>Certificate verification</h3><p>Check a record without an account.</p></div></div>
+                    <form id="verify-form" novalidate>
+                        <label for="verify-id">Certificate ID</label>
+                        <div class="input-action"><input id="verify-id" name="id" type="text" placeholder="Paste the ID or scan its QR code" autocomplete="off" spellcheck="false" required><button id="scan-button" class="icon-button" type="button" aria-label="Scan a certificate QR code" title="Scan a QR code"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8V5a1 1 0 0 1 1-1h3m8 0h3a1 1 0 0 1 1 1v3M4 16v3a1 1 0 0 0 1 1h3m8 0h3a1 1 0 0 0 1-1v-3M8 8h3v3H8zm5 0h3m-3 3h3m-8 2h3m2 0h4v4h-4zm-2 1v3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/></svg></button></div>
+                        <div id="qr-reader" class="qr-reader" hidden></div>
+                        <div class="form-divider"><span>Optional document fingerprint check</span></div>
+                        <label for="verify-file">Upload the certificate file</label>
+                        <div class="file-picker" id="verify-file-picker"><input id="verify-file" name="file" type="file" accept=".pdf,.png,.jpg,.jpeg,.webp,application/pdf,image/png,image/jpeg,image/webp"><div class="file-art" aria-hidden="true">↑</div><div><strong id="verify-file-name">Choose a certificate file</strong><small id="verify-file-note">Hashed on this device. The document itself is never uploaded.</small></div><span class="file-browse">Browse</span></div>
+                        <p class="field-help">Uploading the original lets BlockCert check for a modified or forged copy. The browser sends only its SHA-256 fingerprint.</p>
+                        <button id="verify-submit" class="button button-dark button-full" type="submit">Verify certificate <span aria-hidden="true">→</span></button>
+                    </form>
+                    <div id="verify-result" class="result-panel" role="status" aria-live="polite" hidden></div>
+                </article>
+
+                <aside class="trust-card">
+                    <span class="trust-mark" aria-hidden="true">✳</span>
+                    <p class="eyebrow">More than a QR code</p>
+                    <h3>Real records.<br>Meaningful checks.</h3>
+                    <p>A QR code is simply a quick link to the check. The certificate fingerprint is compared with an actual Solidity smart-contract record on a local Ethereum-compatible blockchain.</p>
+                    <div class="trust-divider"></div>
+                    <div class="trust-detail"><span class="trust-check" aria-hidden="true">✓</span><span><strong>QR code</strong><small>Opens the matching verification record.</small></span></div>
+                    <div class="trust-detail"><span class="trust-check" aria-hidden="true">✓</span><span><strong>SHA-256 fingerprint</strong><small>Reveals even small changes to the original file.</small></span></div>
+                    <div class="trust-detail"><span class="trust-check" aria-hidden="true">✓</span><span><strong>Issuer authorization</strong><small>Confirms the issuing wallet is approved by the contract.</small></span></div>
+                </aside>
+            </div>
+        </section>
+
+        <section id="issue" class="issuer-section">
+            <div class="section-heading">
+                <div><p class="eyebrow">For approved institutions</p><h2>College administration.</h2></div>
+                <p>Securely issue, share, and manage verifiable credentials. Sign in to prepare a blockchain-backed certificate.</p>
+            </div>
+            <div id="issuer-panel" class="issuer-panel">
+                <div id="login-panel" class="workspace-card login-card">
+                    <div class="card-heading"><span class="card-icon admin-icon" aria-hidden="true">✳</span><div><h3>Institution sign in</h3><p>Administrator access is required to issue certificates.</p></div></div>
+                    <form id="login-form">
+                        <label for="admin-password">Demo administrator password</label>
+                        <input id="admin-password" name="password" type="password" autocomplete="current-password" placeholder="Enter the password shown in your app terminal" minlength="12" required>
+                        <button id="login-submit" class="button button-dark button-full" type="submit">Sign in as college admin <span aria-hidden="true">→</span></button>
+                    </form>
+                    <p id="login-feedback" class="feedback" role="status" aria-live="polite"></p>
+                    <div class="login-note"><strong>Local demonstration</strong><span>Your one-run password appears in the terminal when you start the app. It is never sent to a third-party service.</span></div>
+                </div>
+                <div id="admin-workspace" class="workspace-card admin-workspace" hidden>
+                    <div class="admin-toolbar"><div class="card-heading"><span class="card-icon admin-icon" aria-hidden="true">✳</span><div><h3>Authorized issuer</h3><p id="admin-address"></p></div></div><button id="logout-button" class="button button-outline" type="button">Sign out</button></div>
+                    <form id="issue-form">
+                        <h4>Issue an academic certificate</h4>
+                        <p class="form-intro">The original document is hashed in your browser. Only its SHA-256 fingerprint and issuer wallet are written to the blockchain.</p>
+                        <div class="field-grid">
+                            <div class="field-group"><label for="certificate-name">Certificate title</label><input id="certificate-name" name="name" type="text" maxlength="120" placeholder="e.g. Bachelor of Technology" autocomplete="off" required></div>
+                            <div class="field-group"><label for="recipient-name">Student’s name</label><input id="recipient-name" name="recipient" type="text" maxlength="100" placeholder="Name shown on the certificate" autocomplete="name" required></div>
+                            <div class="field-group field-span"><label for="institution-name">Issuing college / institution</label><input id="institution-name" name="institution" type="text" maxlength="120" placeholder="Official institution name" autocomplete="organization" required></div>
+                        </div>
+                        <label for="issue-file">Original certificate file</label>
+                        <div class="file-picker" id="issue-file-picker"><input id="issue-file" name="file" type="file" accept=".pdf,.png,.jpg,.jpeg,.webp,application/pdf,image/png,image/jpeg,image/webp" required><div class="file-art" aria-hidden="true">↑</div><div><strong id="issue-file-name">Choose the signed certificate file</strong><small id="issue-file-note">PDF or image · processed privately on this device</small></div><span class="file-browse">Browse</span></div>
+                        <div class="privacy-note"><span class="privacy-lock" aria-hidden="true">◈</span><span><strong>Personal details stay off-chain.</strong> Student and college names remain in the local demo database; only the certificate fingerprint, timestamp, and authorized issuer wallet go on-chain.</span></div>
+                        <button id="issue-submit" class="button button-primary button-full" type="submit">Issue and record certificate <span aria-hidden="true">→</span></button>
+                    </form>
+                    <div id="issue-feedback" class="feedback" role="status" aria-live="polite"></div>
+                    <div id="issued-result" class="issued-result" hidden></div>
+                    <section id="records-section" class="records-section" aria-labelledby="records-title">
+                        <div class="records-heading"><div><p class="eyebrow">Institution’s local register</p><h4 id="records-title">Issued certificates</h4></div><span id="records-count" class="record-count">0 records</span></div>
+                        <div id="records-list" class="records-list"></div>
+                    </section>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="steps-section">
+            <div class="section-heading section-heading-centered"><div><p class="eyebrow">Clarity at every step</p><h2>How BlockCert works.</h2></div><p>No public registration. No uploaded certificate. Just transparent, on-chain checks.</p></div>
+            <div class="steps-grid">
+                <article class="step"><span class="step-number">01</span><span class="step-icon" aria-hidden="true">▤</span><h3>An issuer prepares a credential</h3><p>An authorized college admin selects a certificate document and enters its details.</p></article>
+                <article class="step"><span class="step-number">02</span><span class="step-icon" aria-hidden="true">◇</span><h3>A fingerprint is recorded</h3><p>Your browser calculates the SHA-256 hash. The original file never leaves your device.</p></article>
+                <article class="step"><span class="step-number">03</span><span class="step-icon" aria-hidden="true">▦</span><h3>A shareable QR is ready</h3><p>The student can share a QR code linked to that specific certificate’s public verification page.</p></article>
+                <article class="step"><span class="step-number">04</span><span class="step-icon" aria-hidden="true">✓</span><h3>Anyone checks the record</h3><p>The app compares the uploaded certificate fingerprint with its on-chain record.</p></article>
+            </div>
+            <div class="demo-notice"><span aria-hidden="true">ⓘ</span><p><strong>Demo, not production.</strong> BlockCert runs a real smart contract on a locally persisted blockchain. It listens only on your computer (127.0.0.1) and is not a public cloud deployment. Use sample or test certificate data only—never real students’ private documents or information.</p></div>
+        </section>
+    </main>
+
+    <footer class="footer"><a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span><span>Block<span class="brand-highlight">Cert</span></span></a><p>Built for transparent, tamper-evident certificate verification.</p><span>Local demo · Ethereum-compatible blockchain</span></footer>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="/src/client.js"></script>
+</body>
+</html>
